@@ -10,33 +10,92 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GenererRouteImport } from './routes/generer'
+import { Route as HistoriqueRouteImport } from './routes/historique'
+import { Route as MarqueRouteImport } from './routes/marque'
+import { Route as ParametresRouteImport } from './routes/parametres'
+import { Route as ValidationRouteImport } from './routes/validation'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GenererRoute = GenererRouteImport.update({
+  id: '/generer',
+  path: '/generer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoriqueRoute = HistoriqueRouteImport.update({
+  id: '/historique',
+  path: '/historique',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarqueRoute = MarqueRouteImport.update({
+  id: '/marque',
+  path: '/marque',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParametresRoute = ParametresRouteImport.update({
+  id: '/parametres',
+  path: '/parametres',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ValidationRoute = ValidationRouteImport.update({
+  id: '/validation',
+  path: '/validation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/generer': typeof GenererRoute
+  '/historique': typeof HistoriqueRoute
+  '/marque': typeof MarqueRoute
+  '/parametres': typeof ParametresRoute
+  '/validation': typeof ValidationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/generer': typeof GenererRoute
+  '/historique': typeof HistoriqueRoute
+  '/marque': typeof MarqueRoute
+  '/parametres': typeof ParametresRoute
+  '/validation': typeof ValidationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/generer': typeof GenererRoute
+  '/historique': typeof HistoriqueRoute
+  '/marque': typeof MarqueRoute
+  '/parametres': typeof ParametresRoute
+  '/validation': typeof ValidationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/generer' | '/historique' | '/marque' | '/parametres' | '/validation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/generer' | '/historique' | '/marque' | '/parametres' | '/validation'
+  id:
+    | '__root__'
+    | '/'
+    | '/generer'
+    | '/historique'
+    | '/marque'
+    | '/parametres'
+    | '/validation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GenererRoute: typeof GenererRoute
+  HistoriqueRoute: typeof HistoriqueRoute
+  MarqueRoute: typeof MarqueRoute
+  ParametresRoute: typeof ParametresRoute
+  ValidationRoute: typeof ValidationRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +107,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/generer': {
+      id: '/generer'
+      path: '/generer'
+      fullPath: '/generer'
+      preLoaderRoute: typeof GenererRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/historique': {
+      id: '/historique'
+      path: '/historique'
+      fullPath: '/historique'
+      preLoaderRoute: typeof HistoriqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marque': {
+      id: '/marque'
+      path: '/marque'
+      fullPath: '/marque'
+      preLoaderRoute: typeof MarqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parametres': {
+      id: '/parametres'
+      path: '/parametres'
+      fullPath: '/parametres'
+      preLoaderRoute: typeof ParametresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/validation': {
+      id: '/validation'
+      path: '/validation'
+      fullPath: '/validation'
+      preLoaderRoute: typeof ValidationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GenererRoute: GenererRoute,
+  HistoriqueRoute: HistoriqueRoute,
+  MarqueRoute: MarqueRoute,
+  ParametresRoute: ParametresRoute,
+  ValidationRoute: ValidationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

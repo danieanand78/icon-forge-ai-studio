@@ -52,7 +52,7 @@ function Generer() {
       if (i >= pipelineEtapes.length - 1) {
         clearInterval(timer);
         setEnCours(false);
-        setResultat({ svg: iconeSvg(concept.trim()), score: 88 + (concept.length % 10) });
+        setResultat({ svg: iconeSvg(concept.trim()), score: 88 + (concept.length % 10), concept: concept.trim() });
       }
     }, 320);
   };
